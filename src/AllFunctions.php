@@ -181,4 +181,34 @@ class WebFunctions
         $_SESSION['deleteMassege'] = "Successfully Deleted !";
         header("Location:categoryList.php");
     }
+    public function storeProduct($data)
+    {
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+
+
+        $sql = "INSERT INTO tblproduct(name,categoryName,quantity,description) 
+        VALUES(:name,:categoryName,:quantity,:description)";
+
+        $statement = $conn->prepare($sql);
+        $done = $statement->execute([
+            ":name" => $data['name'],
+            ":categoryName" => $data['categoryName'],
+            ":quantity" => $data['quantity'],
+            ":description" => $data['description'],
+        ]);
+        $_SESSION['massege'] = "Successfully Created !";
+
+        return $done;
+    }
+
+    public function viewProduct()
+    {
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+        $statement = $conn->query('SELECT * FROM tblproduct');
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
 }

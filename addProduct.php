@@ -44,14 +44,14 @@
     </div>
     <div class="container ">
         <div class="justify-content-md-center pb-2">
-            <form action="" method="POST" class="form-login align-items-center">
+            <form action="storeProduct.php" method="POST" class="form-login align-items-center">
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Product Name</label>
                     <input type="text" class="form-control" name="name" placeholder="Product Name" required>
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Category Name</label>
-                    <input type="text" class="form-control" name="category" placeholder="Select from category list" required>
+                    <input type="text" class="form-control" name="categoryName" placeholder="Select from category list" required>
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Quantity</label>

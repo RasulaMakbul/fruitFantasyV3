@@ -1,3 +1,20 @@
+<?php
+include "./vendor/autoload.php";
+
+use AppControl\WebFunctions;
+
+require_once "./src/AllFunctions.php";
+
+
+if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
+    echo "Only Get Method  allowed";
+    die();
+} else {
+    $fun = new WebFunctions;
+    $productInfo  =  $fun->viewProduct();
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -16,7 +33,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Fruit Fantasy</a>
             <form class="d-flex ">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -45,6 +62,27 @@
         <div class=" justify-content-center fs-5 mb-3">
             <a href="./addProduct.php" class="btn btn-success" type="submit">Add Product</a>
         </div>
+        <?php
+        if (isset($_SESSION['massege'])) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= $_SESSION['massege'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            </div>
+        <?php
+            unset($_SESSION['massege']);
+        } else if (isset($_SESSION['deleteMassege'])) {
+        ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?= $_SESSION['deleteMassege'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+            </div>
+        <?php
+            unset($_SESSION['deleteMassege']);
+        }
+        ?>
         <table class=" table table-success table-striped table-hover text-center">
             <thead class="table-dark">
                 <tr>
@@ -56,17 +94,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">1</td>
-                    <td>Pink Lady</td>
-                    <td>Apple</td>
-                    <td>10</td>
-                    <td>
-                        <a href="./viewProduct.php" class="link-success"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
-                        <a href="./editProduct.php" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-                        <a href="#" class="link-danger"><i class="fa-solid fa-trash fs-5"></i></a>
-                    </td>
-                </tr>
+                <?php foreach ($productInfo as $key => $user) { ?>
+                    <tr>
+                        <td scope="row"><?= $user['id'] ?></td>
+                        <td><?= $user['name'] ?></td>
+                        <td><?= $user['categoryName'] ?></td>
+                        <td><?= $user['quantity'] ?></td>
+                        <td>
+                            <a href="viewProduct.php?id=<?php echo $user['id'] ?>" class="link-success"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
+                            <a href="editProduct.php?id=<?php echo $user['id'] ?>" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                            <a href="deleteProduct.php?id=<?php echo $user['id'] ?>" class="link-danger"><i class="fa-solid fa-trash fs-5"></i></a>
+                        </td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>
