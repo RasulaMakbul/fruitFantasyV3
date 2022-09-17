@@ -1,3 +1,20 @@
+<?php
+include "./vendor/autoload.php";
+
+use AppControl\WebFunctions;
+
+require_once "./src/AllFunctions.php";
+
+if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
+    echo "Only Get Method  allowed";
+    die();
+} else {
+    $id = $_GET['id'];
+    $fun = new WebFunctions;
+    $productInfo  =  $fun->viewProductSingle($id);
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -25,7 +42,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <button type="button" class="btn btn-outline-secondary mx-3"><i class="fa-solid fa-user"></i></button>
+                <a type="button" href="login.php" class="btn btn-outline-secondary mx-3"><i class="fa-solid fa-user"></i></a>
                 <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-cart-arrow-down"></i></button </div>
             </div>
     </nav>
@@ -50,7 +67,7 @@
                         <div class="card text-center">
                             <div class="card-body">
                                 <div class="mt3">
-                                    <h3>Pink Lady</h3>
+                                    <h3><?= $productInfo['name'] ?></h3>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +81,7 @@
                                         <h5>Product Name</h5>
                                     </div>
                                     <div class="col-md-9 text-secondary">
-                                        Pink Lady
+                                        <?= $productInfo['name'] ?>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -72,7 +89,7 @@
                                         <h5>Category</h5>
                                     </div>
                                     <div class="col-md-9 text-secondary">
-                                        Apple
+                                        <?= $productInfo['categoryName'] ?>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -80,7 +97,7 @@
                                         Available Quantity
                                     </div>
                                     <div class="col-md-9 text-secondary">
-                                        120
+                                        <?= $productInfo['quantity'] ?>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -88,12 +105,12 @@
                                         Description
                                     </div>
                                     <div class="col-md-9 text-secondary">
-                                        <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height. </p>
+                                        <?= $productInfo['description'] ?>
                                     </div>
                                 </div>
 
                                 <div class=" justify-content-center fs-3 mb-3">
-                                    <a href="./editProduct.php" class="btn btn-secondary w-50 mt-5" type="submit">Edit</a>
+                                    <a href="editProduct.php?id=<?php echo $productInfo['id'] ?>" class="btn btn-secondary w-50 mt-5" type="submit">Edit</a>
                                     <a href="./productList.php" class="btn btn-success w-50 mt-1" type="submit">Back to List</a>
                                 </div>
                             </div>

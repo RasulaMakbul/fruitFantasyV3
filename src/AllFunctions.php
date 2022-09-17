@@ -211,4 +211,58 @@ class WebFunctions
 
         return $result;
     }
+
+    public function viewProductSingle($id)
+    {
+        $id = $_GET['id'];
+
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+        $query = "SELECT * FROM tblproduct WHERE id=:id LIMIT 1";
+        $sql = $conn->prepare($query);
+
+
+
+        $data = [':id' => $id];
+
+        $sql->execute($data);
+        $result = $sql->fetch(\PDO::FETCH_ASSOC); //FETCH_OBJ
+        return $result;
+    }
+
+    public function updateProduct($data, $id)
+    {
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+
+        $sql = "UPDATE tblproduct SET name=:name,categoryName=:categoryName,quantity=:quantity,description=:description WHERE id=:id LIMIT 1";
+
+        $statement = $conn->prepare($sql);
+        $data = [
+            ":name" => $data['name'],
+            ":categoryName" => $data['categoryName'],
+            ":quantity" => $data['quantity'],
+            ":description" => $data['description'],
+            ':id' => $id,
+
+        ];
+
+        $statement->execute($data);
+        $_SESSION['massege'] = "Successfully Updated !";
+    }
+
+    public function deleteProduct($id)
+    {
+
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+
+
+        $sql = $conn->prepare("DELETE FROM tblproduct WHERE id=$id");
+
+        $sql->execute();
+        $conn = null;
+        $_SESSION['deleteMassege'] = "Successfully Deleted !";
+        header("Location:categoryList.php");
+    }
 }

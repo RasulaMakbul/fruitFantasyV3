@@ -1,3 +1,21 @@
+<?php
+include "./vendor/autoload.php";
+
+use AppControl\WebFunctions;
+
+require_once "./src/AllFunctions.php";
+
+if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
+    echo "Only Get Method  allowed";
+    die();
+} else {
+    $id = $_GET['id'];
+    $fun = new WebFunctions;
+    $productInfo  =  $fun->viewProductSingle($id);
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -25,7 +43,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <button type="button" class="btn btn-outline-secondary mx-3"><i class="fa-solid fa-user"></i></button>
+                <a type="button" href="login.php" class="btn btn-outline-secondary mx-3"><i class="fa-solid fa-user"></i></a>
                 <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-cart-arrow-down"></i></button </div>
             </div>
     </nav>
@@ -45,22 +63,25 @@
     </div>
     <div class="container ">
         <div class="justify-content-md-center pb-2">
-            <form action="" method="POST" class="form-login align-items-center">
+            <form action="./updateProduct.php?=<?= $productInfo['id'] ?>" method="POST" class="form-login align-items-center">
+                <div class="col-md-auto pb-2">
+                    <input type="text" class="form-control" name="id" value="<?= $productInfo['id'] ?>" hidden required>
+                </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Product Name</label>
-                    <input type="text" class="form-control" name="name" value="Pink Lady" required>
+                    <input type="text" class="form-control" name="name" value="<?= $productInfo['name'] ?>" required>
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Category Name</label>
-                    <input type="text" class="form-control" name="category" value="Apple" required>
+                    <input type="text" class="form-control" name="categoryName" value="<?= $productInfo['categoryName'] ?>" required>
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Quantity</label>
-                    <input type="text" class="form-control" name="quantity" value="10" required>
+                    <input type="text" class="form-control" name="quantity" value="<?= $productInfo['quantity'] ?>" required>
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Description</label>
-                    <input type="text" class="form-control" name="description" value="More details about the category type" required>
+                    <input type="text" class="form-control" name="description" value="<?= $productInfo['description'] ?>" required>
                 </div>
                 <div class=" justify-content-center fs-3 mb-2">
                     <button class="btn btn-primary" type="submit" name="submit">Save</button>
