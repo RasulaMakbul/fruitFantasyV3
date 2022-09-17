@@ -1,3 +1,20 @@
+<?php
+include "./vendor/autoload.php";
+
+use AppControl\WebFunctions;
+
+require_once "./src/AllFunctions.php";
+
+
+if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
+    echo "Only Get Method  allowed";
+    die();
+} else {
+    $fun = new WebFunctions;
+    $productInfo  =  $fun->viewProduct();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,13 +31,16 @@
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
 </head>
 
 <body>
     <!-- Side bar -->
     <section id="menu">
         <div class="logo">
-            <a href="../index.html">
+            <a href="../index.html" style="color:black ;text-decoration: none; text-align: center;">
                 <h5>Fruit Fantasy</h5>
             </a>
         </div>
@@ -102,112 +122,30 @@
         </div>
         <h3 class="i-name">Quantity Dropping</h3>
         <div class="board">
-            <table width="100%">
-                <thead>
+            <table class=" table table-success table-striped table-hover text-center">
+                <thead class="table-dark">
                     <tr>
-                        <td>Name</td>
-                        <td>Category</td>
-                        <td>Available</td>
-                        <td>Action</td>
-                        <td></td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">Available</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="people">
-                            <img src="#" alt="">
-                            <div class="people-de">
-                                <h5>Khrisa pati</h5>
-                            </div>
-                        </td>
-                        <td class="people-des">
-                            <h5>Mango</h5>
-                        </td>
-                        <td>
-                            <p>500 kg</p>
-                        </td>
-
-                        <td class="edit">
-                            <a href="#">Edit</a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td class="people">
-                            <img src="#" alt="">
-                            <div class="people-de">
-                                <h5>Khrisa pati</h5>
-                            </div>
-                        </td>
-                        <td class="people-des">
-                            <h5>Mango</h5>
-                        </td>
-                        <td>
-                            <p>500 kg</p>
-                        </td>
-
-                        <td class="edit">
-                            <a href="#">Edit</a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td class="people">
-                            <img src="../img/rMango.jpg" alt="">
-                            <div class="people-de">
-                                <h5>Khrisa pati</h5>
-                            </div>
-                        </td>
-                        <td class="people-des">
-                            <h5>Mango</h5>
-                        </td>
-                        <td>
-                            <p>500 kg</p>
-                        </td>
-
-                        <td class="edit">
-                            <a href="#">Edit</a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td class="people">
-                            <img src="../img/rMango.jpg" alt="">
-                            <div class="people-de">
-                                <h5>Khrisa pati</h5>
-                            </div>
-                        </td>
-                        <td class="people-des">
-                            <h5>Mango</h5>
-                        </td>
-                        <td>
-                            <p>500 kg</p>
-                        </td>
-
-                        <td class="edit">
-                            <a href="#">Edit</a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td class="people">
-                            <img src="../img/rMango.jpg" alt="">
-                            <div class="people-de">
-                                <h5>Khrisa pati</h5>
-                            </div>
-                        </td>
-                        <td class="people-des">
-                            <h5>Mango</h5>
-                        </td>
-                        <td>
-                            <p>500 kg</p>
-                        </td>
-
-                        <td class="edit">
-                            <a href="#">Edit</a>
-                        </td>
-
-                    </tr>
+                    <?php foreach ($productInfo as $key => $user) { ?>
+                        <tr>
+                            <td scope="row"><?= $user['id'] ?></td>
+                            <td><?= $user['name'] ?></td>
+                            <td><?= $user['categoryName'] ?></td>
+                            <td><?= $user['quantity'] ?></td>
+                            <td>
+                                <a href="viewProduct.php?id=<?php echo $user['id'] ?>" class="link-success"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
+                                <a href="editProduct.php?id=<?php echo $user['id'] ?>" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                                <a href="deleteProduct.php?id=<?php echo $user['id'] ?>" class="link-danger"><i class="fa-solid fa-trash fs-5"></i></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
