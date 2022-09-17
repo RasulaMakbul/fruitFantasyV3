@@ -1,0 +1,52 @@
+a{
+    color:aliceblue;
+    text-decoration: none;
+    text-align: center;
+}
+.sidebar{
+    position: fixed;
+    width: 200px;
+    height: 100vh;
+    padding-top: 10px;
+    align-items: center;
+    left: 0;
+}
+
+.sidebar .items li{
+    padding: 40px 0 0 30px;
+    list-style-type: none;
+}
+
+.sidebar .items li a{
+    padding-left: 15px;
+}
+
+.container{
+    margin: 50px 0 0 200px;
+}
+
+.form-login {
+    background-color: rgba(236, 240, 241, .35);
+    color: rgb(52, 61, 70);
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto;
+    max-width: 650px;
+    width: 100%;
+}
+
+card-body {
+    background-color: #333;
+    color: aliceblue;
+    height: 100%;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    background-color: whitesmoke;
+}

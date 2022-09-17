@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+/* sidebar style start */
+
+#menu {
+    background-color: aliceblue;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#menu .logo {
+    font-size: 25px;
+    ;
+    display: flex;
+    align-items: center;
+    padding: 30px 0 0 30px;
+    margin-bottom: 30px;
+}
+
+#menu .items {
+    margin-top: 40px;
+
+}
+
+#menu .items li {
+    list-style: none;
+    padding: 15px 0;
+    transition: 0.3s ease;
+
+
+}
+
+#menu .items li:hover {
+    background: #84a9f7;
+    cursor: pointer;
+    color: aliceblue;
+}
+
+#menu .items li:nth-child(1) {
+    border-left: 4px solid rgb(36, 5, 5);
+}
+
+
+#menu .items li i {
+    color: rgb(33, 13, 51);
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 10px 0 25px;
+
+}
+
+#menu .items li:hover i,
+#menu .items li:hover a {
+    color: aliceblue;
+}
+
+#menu .items li a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+/* sidebar style ends */
+
+/* nav bar style starts */
+
+
+#interface {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    position: relative;
+
+}
+
+#interface .nav {
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    border-bottom: 3px solid rgb(1, 1, 77);
+    position: fixed;
+    width: calc(100% - 300px);
+
+}
+
+#interface .nav .search {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid rgb(68, 66, 66);
+}
+
+#interface .nav .search i {
+    margin-right: 14px;
+}
+
+#interface .nav .search input {
+    border: none;
+    outline: none;
+    background-color: aliceblue;
+    font-size: 14px;
+}
+
+#interface .nav .profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#interface .nav .profile i {
+    margin-right: 20px;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+#interface .nav .profile img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.n1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+#menu-btn {
+    display: none;
+    color: #444a53;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+/* nav bar style ends */
+
+.mainBody {
+    position: absolute;
+    left: 330px;
+    top: 100px;
+
+}
