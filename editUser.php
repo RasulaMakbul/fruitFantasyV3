@@ -62,27 +62,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
     </div>
     <div class="container ">
         <div class="justify-content-md-center pb-2">
-            <?php
-            if (isset($_SESSION['massege'])) {
-            ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <?= $_SESSION['massege'] ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
-                </div>
-            <?php
-                unset($_SESSION['massege']);
-            } else if (isset($_SESSION['deleteMassege'])) {
-            ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <?= $_SESSION['deleteMassege'] ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-                </div>
-            <?php
-                unset($_SESSION['deleteMassege']);
-            }
-            ?>
             <form action="./updateUser.php?=<?= $userInfo['id'] ?>" method="POST" class="form-login align-items-center">
                 <div class="col-md-auto pb-2">
                     <input type="text" class="form-control" name="id" value="<?= $userInfo['id'] ?>" hidden required>

@@ -1,3 +1,22 @@
+<?php
+include "./vendor/autoload.php";
+
+use AppControl\WebFunctions;
+
+require_once "./src/AllFunctions.php";
+
+
+if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
+    echo "Only Get Method  allowed";
+    die();
+} else {
+    $id = $_GET['id'];
+    $fun = new WebFunctions;
+    $categoryInfo  =  $fun->viewCategorySingle($id);
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -16,7 +35,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Fruit Fantasy</a>
             <form class="d-flex ">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -25,7 +44,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <button type="button" class="btn btn-outline-secondary mx-3"><i class="fa-solid fa-user"></i></button>
+                <a type="button" href="login.php" class="btn btn-outline-secondary mx-3"><i class="fa-solid fa-user"></i></a>
                 <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-cart-arrow-down"></i></button </div>
             </div>
     </nav>
@@ -44,18 +63,21 @@
     </div>
     <div class="container ">
         <div class="justify-content-md-center pb-2">
-            <form action="" method="POST" class="form-login align-items-center">
+            <form action="./updateCategory.php?=<?= $categoryInfo['id'] ?>" method="POST" class="form-login align-items-center">
+                <div class="col-md-auto pb-2">
+                    <input type="text" class="form-control" name="id" value="<?= $categoryInfo['id'] ?>" hidden required>
+                </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" value="Apple" required>
+                    <input type="text" class="form-control" name="name" value="<?= $categoryInfo['name'] ?>" required>
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Product</label>
-                    <input type="text" class="form-control" name="product" value="11" required>
+                    <input type="text" class="form-control" name="products" value="<?= $categoryInfo['products'] ?>" required>
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Description</label>
-                    <input type="text" class="form-control" name="description" value="This is a longer card with supporting text below as a natural lead-in to additional" required>
+                    <input type="text" class="form-control" name="description" value="<?= $categoryInfo['description'] ?>" required>
                 </div>
                 <div class=" justify-content-center fs-3 mb-2">
                     <button class="btn btn-primary" type="submit" name="submit">Save</button>

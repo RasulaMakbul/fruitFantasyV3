@@ -99,4 +99,86 @@ class WebFunctions
         $_SESSION['deleteMassege'] = "Successfully Deleted !";
         header("Location:userList.php");
     }
+
+    public function storeCategory($data)
+    {
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+
+
+        $sql = "INSERT INTO tblcatagories(name,products,description) 
+        VALUES(:name,:products,:description)";
+
+        $statement = $conn->prepare($sql);
+        $done = $statement->execute([
+            ":name" => $data['name'],
+            ":products" => $data['products'],
+            ":description" => $data['description']
+        ]);
+        $_SESSION['massege'] = "Successfully Created !";
+
+        return $done;
+    }
+
+    public function viewCategories()
+    {
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+        $statement = $conn->query('SELECT * FROM tblcatagories');
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
+    public function viewCategorySingle($id)
+    {
+        $id = $_GET['id'];
+
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+        $query = "SELECT * FROM tblcatagories WHERE id=:id LIMIT 1";
+        $sql = $conn->prepare($query);
+
+
+
+        $data = [':id' => $id];
+
+        $sql->execute($data);
+        $result = $sql->fetch(\PDO::FETCH_ASSOC); //FETCH_OBJ
+        return $result;
+    }
+
+    public function updateCategory($data, $id)
+    {
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+
+        $sql = "UPDATE tblcatagories SET name=:name,products=:products,description=:description WHERE id=:id LIMIT 1";
+
+        $statement = $conn->prepare($sql);
+        $data = [
+            ":name" => $data['name'],
+            ":products" => $data['products'],
+            ":description" => $data['description'],
+            ':id' => $id,
+
+        ];
+
+        $statement->execute($data);
+        $_SESSION['massege'] = "Successfully Updated !";
+    }
+
+    public function deleteCategory($id)
+    {
+
+        $con = new DBConn;
+        $conn = $con->dbConnection();
+
+
+        $sql = $conn->prepare("DELETE FROM tblcatagories WHERE id=$id");
+
+        $sql->execute();
+        $conn = null;
+        $_SESSION['deleteMassege'] = "Successfully Deleted !";
+        header("Location:categoryList.php");
+    }
 }

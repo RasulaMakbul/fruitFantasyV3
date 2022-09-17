@@ -13,7 +13,7 @@
 
     <!-- customised stylesheet -->
     <link rel="stylesheet" href="./css/style.css">
-    <title>Home</title>
+    <title>Registration</title>
 </head>
 
 <body>

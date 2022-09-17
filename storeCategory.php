@@ -11,9 +11,11 @@ if (isset($_SERVER['REQUEST_METHOD']) != "POST") {
     echo "Post Method Only!";
     die();
 } else {
-    $users = new WebFunctions;
-    if ($users->storeUser($_POST)) {
-        header('Location: login.php');
+    $cat = new WebFunctions;
+
+    if ($cat->storeCategory($_POST)) {
+
+        header('Location: categoryList.php');
     } else {
         die("ERROR!");
     }

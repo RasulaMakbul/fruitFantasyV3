@@ -104,7 +104,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
                             <td><?= $user['gender'] ?></td>
                             <td>
                                 <a href="viewUser.php?id=<?php echo $user['id'] ?>" class="link-success"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
-                                <a href="editUsr.php?id=<?php echo $user['id'] ?>" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                                <a href="editUser.php?id=<?php echo $user['id'] ?>" class="link-info"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
                                 <a href="deleteUser.php?id=<?php echo $user['id'] ?>" class="link-danger"><i class="fa-solid fa-trash fs-5"></i></a>
                             </td>
                         </tr>
