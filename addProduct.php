@@ -1,3 +1,21 @@
+<?php
+include "./vendor/autoload.php";
+
+use AppControl\WebFunctions;
+
+require_once "./src/AllFunctions.php";
+
+
+if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
+    echo "Only Get Method  allowed";
+    die();
+} else {
+    $fun = new WebFunctions;
+    $categoryInfo  =  $fun->viewCategories();
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -51,7 +69,18 @@
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Category Name</label>
-                    <input type="text" class="form-control" name="categoryName" placeholder="Select from category list" required>
+
+                    <div class="form-label">
+                        <select name="categoryName">
+                            <option>Select Category</option>
+                            <?php foreach ($categoryInfo as $key => $user) { ?>
+                                <option>
+                                    <?= $user['name'] ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <!-- <input type="text" class="form-control" name="categoryName" placeholder="Select from category list" required> -->
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Quantity</label>
