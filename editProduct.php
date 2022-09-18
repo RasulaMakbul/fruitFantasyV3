@@ -34,7 +34,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Fruit Fantasy</a>
+            <a class="navbar-brand" href="index.php">Fruit Fantasy</a>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>

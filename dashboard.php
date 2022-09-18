@@ -40,7 +40,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
     <!-- Side bar -->
     <section id="menu">
         <div class="logo">
-            <a href="../index.html" style="color:black ;text-decoration: none; text-align: center;">
+            <a href="index.php" style="color:black ;text-decoration: none; text-align: center;">
                 <h5>Fruit Fantasy</h5>
             </a>
         </div>

@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light justify-content-center fs-3 mb-5 border-3 rounded-2" style="background-color: #e3f2fd;">CRUD User Registration</nav>
+    <nav class="navbar navbar-light justify-content-center fs-3 mb-5 border-3 rounded-2" style="background-color: #e3f2fd;">Registration</nav>
     <div class="container mt-5 p-3">
         <div class="justify-content-md-center pb-2">
             <form action="storeUser.php" method="POST" class="form-login align-items-center">

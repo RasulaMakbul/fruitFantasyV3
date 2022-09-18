@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light justify-content-center fs-3 mb-5 border-3 rounded-2" style="background-color: #e3f2fd;">Crud User Login</nav>
+    <nav class="navbar navbar-light justify-content-center fs-3 mb-5 border-3 rounded-2" style="background-color: #e3f2fd;">Login</nav>
     <div class="container mt-5 p-3">
         <div class="justify-content-md-center pb-2">
             <form action="" method="POST" class="form-login align-items-center">
