@@ -42,11 +42,11 @@
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">password</label>
-                    <input type="text" class="form-control" name="passw" required>
+                    <input type="password" class="form-control" name="passw" required>
                 </div>
                 <div class="col-md-auto pb-2">
                     <label class="form-label">Retype Password</label>
-                    <input type="text" class="form-control" name="rePassword" required>
+                    <input type="password" class="form-control" name="rePassword" required>
                 </div>
                 <div class="col-md-auto pt-3 pb-3">
                     <label>Gender</label> &nbsp;

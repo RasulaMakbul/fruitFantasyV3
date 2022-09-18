@@ -137,7 +137,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) != " GET") {
                     <p class="card-text"><?= $user['description'] ?></p>
                   </div>
                 </div>
-                <a href="pinkLadyApple.html" class="btn btn-secondary">View</a>
+                <a href="viewProductUser.php?id=<?php echo $user['id'] ?>" class="link-success"><i class="fa-solid fa-eye fs-5 me-3"></i></a>
                 <button type="button" onclick="addToCart()" class="btn btn-success" id="cartAdd">
                   <i class="fa-solid fa-cart-plus"></i>
                 </button>
